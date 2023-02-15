@@ -17,7 +17,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh - 65px);
+  height: fit-content;
+  margin-top: 65px;
 }
 
 .form-magin {

@@ -15,6 +15,8 @@ const RegisterForm = () => {
     gender: "",
     phone: "",
     email: "",
+    password: "",
+    confirmPassword: "",
     errors: {},
   });
 
@@ -57,6 +59,14 @@ const RegisterForm = () => {
       if (!emailRegex.test(formState.email.trim())) {
         errors.email = "El correo electrónico no es válido";
       }
+    }
+
+    if (!formState.password.trim() && !formState.password.trim()) {
+      errors.confirmPassword = "El campo Contraseña es obligatorio";
+    }
+
+    if (formState.password !== formState.confirmPassword) {
+      errors.confirmPassword = "Las contraseñas no coinciden";
     }
 
     setFormState({ ...formState, errors });
@@ -153,6 +163,29 @@ const RegisterForm = () => {
         />
         {formState.errors.email && (
           <p className="error">{formState.errors.email}</p>
+        )}
+      </div>
+      <div>
+        <label htmlFor="password">Contraseña:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={formState.password}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          value={formState.confirmPassword}
+          onChange={handleChange}
+        />
+        {formState.errors.confirmPassword && (
+          <p className="error">{formState.errors.confirmPassword}</p>
         )}
       </div>
       <button type="submit">Registrarse</button>
